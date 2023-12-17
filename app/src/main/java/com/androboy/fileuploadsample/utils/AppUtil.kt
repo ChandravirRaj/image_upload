@@ -18,6 +18,10 @@ import java.util.Locale
 
 object AppUtil {
 
+    /**
+     * preventTwoClick():- is used to prevent double click on any button click
+     * @param view
+     * */
     fun preventTwoClick(view: View?) {
         if (view != null) {
             view.isEnabled = false
@@ -36,10 +40,23 @@ object AppUtil {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
 
+
+    /**
+     * getColor():- to get color from res
+     * @param color Int
+     * @return color
+     * */
     fun getColor(color: Int): Int {
         return ContextCompat.getColor(SampleApp.INSTANCE, color)
     }
 
+
+    /**
+     *
+     * showToast():- this method is used to show Toast message. it is common method
+     * @param msg String
+     *
+     * */
     fun showToast(msg: String?) {
         if (!TextUtils.isEmpty(msg)) {
             Toast.makeText(SampleApp.INSTANCE, msg, Toast.LENGTH_LONG)
@@ -48,6 +65,11 @@ object AppUtil {
     }
 
 
+    /**
+     * loadImage():- This method is used to load image in Image view by using the Glide Lib
+     * @param view :ImageView
+     * @param file : File
+     * */
     fun loadImage(view: ImageView?, file: File?) {
         if (view != null && file != null) Glide.with(SampleApp.INSTANCE)
             .load(file)
@@ -61,6 +83,13 @@ object AppUtil {
             .into(view)
     }
 
+
+
+    /**
+     *
+     * getMimeType():- This method is used to get MemeType of file
+     * @param url String
+     * */
     fun getMimeType(url: String?): String? {
         val path = Uri.fromFile(File(url))
         val type_map = MimeTypeMap.getSingleton()

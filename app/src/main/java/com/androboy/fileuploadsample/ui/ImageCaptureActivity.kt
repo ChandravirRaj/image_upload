@@ -26,7 +26,9 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import java.io.File
 
 /**
- * ImageCaptureActivity : Check of gallery and camera permission with image path code
+ * ImageCaptureActivity : this class is  used to pick image from gallery,
+ * camera and check run time permission for capturing
+ * and picking images
  */
 class ImageCaptureActivity : AppCompatActivity() {
     private var mCapturedImageURI: Uri? = null

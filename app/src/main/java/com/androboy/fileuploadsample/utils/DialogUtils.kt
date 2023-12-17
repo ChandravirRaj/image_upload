@@ -7,8 +7,21 @@ import androidx.appcompat.app.AlertDialog
 import com.androboy.fileuploadsample.R
 import com.androboy.fileuploadsample.callback.IDialogCallback
 
+/**
+ * DialogUtils : This class is used to show alert dialog for any instruction message and this is
+ * common class  implementation, so it can be user aver all app code.
+ * */
 object DialogUtils {
 
+    /**
+     *  showAlert():-
+     *  @param context Context
+     *  @param title String
+     *  @param message String
+     *  @param ok String
+     *  @param no String
+     *  @param callback IDialogCallback
+     * */
      fun showAlert(
         context: Context?,
         title: String,

@@ -19,6 +19,17 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
+/**
+ *
+ * MainActivity: this one screen is main screen of this app. All functionality is  on this single
+ * screen. There is one Image view for preview of picked and captured image from gallery and camera.
+ *
+ * The image details are also shown withing the box which is just below the preview image box
+ *
+ * There are two button to pick image and upload Image
+ * @see PICK IMAGE : this is the button to pick image from camera and gallery
+ * @see UPLOAD IMAGE : This button is used to upload image on server by a api call
+ * */
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
     lateinit var ui: ActivityMainBinding
@@ -45,6 +56,12 @@ class MainActivity : BaseActivity() {
         setListeners()
     }
 
+
+    /**
+     *
+     * setObservers():- within this method setting observers to handle api responses
+     *
+     * */
     private fun setObservers() {
         viewModel.uploadImageLiveData.observe(this, Observer {
             when (it) {
@@ -59,14 +76,22 @@ class MainActivity : BaseActivity() {
                 }
 
                 is NetworkResult.Loading -> {
-                    Log.d("MMMMMM", "setObserver Loading: ")
+//                    Log.d("MMMMMM", "setObserver Loading: ")
                 }
             }
         })
 
     }
 
+    /**
+     * setListeners()- within this method setting click listeners on various view
+     * @see ui.btnPickImage
+     * @see ui.btnUploadImage
+     * @see uiBottom.linearFromCamera
+     * @see uiBottom.linearFromGallery
+     * */
     private fun setListeners() {
+
         ui.btnPickImage.setOnClickListener {
             AppUtil.preventTwoClick(it)
             selectionCamera = 0

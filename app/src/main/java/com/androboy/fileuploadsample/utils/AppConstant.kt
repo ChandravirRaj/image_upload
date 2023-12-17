@@ -1,7 +1,10 @@
 package com.androboy.fileuploadsample.utils
 
+/**
+ *AppConstant : this file is to contains all constant values
+ * */
 class AppConstant {
-    companion object{
+    companion object {
         const val BASE_URL = "https://upload.imagekit.io/api/v1/files/"
 
         var IS_FROM_CAMERA = "camera"

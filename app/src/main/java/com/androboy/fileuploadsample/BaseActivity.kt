@@ -1,12 +1,10 @@
 package com.androboy.fileuploadsample
 
 import android.app.ProgressDialog
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -92,25 +90,6 @@ abstract class BaseActivity : AppCompatActivity(){
                 progressDialog = null
             }
         }
-    }
-
-
-    /**
-     * Launch activity using class concept
-     *
-     * @param classType launching class
-     */
-    open fun launchActivity(classType: Class<out BaseActivity>) {
-        startActivity(Intent(this, classType))
-    }
-
-
-    open fun launchActivity(
-        classType: Class<out BaseActivity>,
-        view: View
-    ) {
-        AppUtil.preventTwoClick(view)
-        startActivity(Intent(this, classType))
     }
 
 

@@ -15,6 +15,13 @@ import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
 
+/**
+ * MainViewModel():- view model is used for api call but can be use for other tasks as well
+ * such as method can be defile for basic calculation work
+ *
+ * @param context ApplicationContext
+ * @param imageUploadRepository ImageUploadRepository
+ * */
 @HiltViewModel
 class MainViewModel @Inject constructor(
     @ApplicationContext context: Context,
@@ -27,7 +34,11 @@ class MainViewModel @Inject constructor(
         get() = _uploadImageLiveData
 
 
-    fun uploadImage(file: File){
+    /**
+     * Api request to upload image file on server
+     * @param file File
+     * */
+    fun uploadImage(file: File) {
         viewModelScope.launch(Dispatchers.IO) {
             imageUploadRepository.uploadImage(file).let {
                 _uploadImageLiveData.postValue(it)
