@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">FileUploadSample</string>
     <string name="text_button_name">Upload Image </string>
+    <string name="text_button_pick_image">Pick Image </string>
     <string name="text_level_file_name">File Name : </string>
     <string name="text_level_file_path">File Path : </string>
     <string name="text_level_screen_header">Image Upload</string>
     <string name="text_button_cancel">Cancel</string>
     <string name="text_from_gallery">From Gallery</string>
     <string name="text_from_camera">From Camera</string>
+    <string name="text_msg_network_connection">No network detected. Please connect to a network and try again.</string>
+
+
+    <string name="text_ok">OK</string>
+    <string name="text_camera_not_support">This device does not support camera feature.</string>
 </resources>

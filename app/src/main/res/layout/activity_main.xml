@@ -30,6 +30,8 @@
         android:id="@+id/IvImagePreview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:padding="@dimen/_10sdp"
+        android:scaleType="centerCrop"
         android:src="@drawable/baseline_preview_24"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +49,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/llcImageDetails"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_150sdp"
+        android:layout_height="@dimen/_120sdp"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:background="@drawable/bg_file_detail_container"
@@ -101,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toEndOf="@+id/tvFilePathLevel"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -110,6 +112,21 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnPickImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:backgroundTint="@color/color_6A4242"
+        android:text="@string/text_button_pick_image"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_17sdp"
+        app:layout_constraintBottom_toTopOf="@+id/btnUploadImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnUploadImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:layout_marginStart="@dimen/_20sdp"
