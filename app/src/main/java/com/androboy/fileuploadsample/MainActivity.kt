@@ -1,15 +1,21 @@
 package com.androboy.fileuploadsample
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.viewbinding.ViewBinding
+import com.androboy.fileuploadsample.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        Log.d("TAG", "onCreate: This is main screen ")
+@AndroidEntryPoint
+class MainActivity : BaseActivity() {
+    override fun layoutRes(): ViewBinding {
+        installSplashScreen()
+        return ActivityMainBinding.inflate(layoutInflater)
     }
+
+    override fun initView() {
+        Log.d("TAG", "initView: ")
+    }
+
+
 }
