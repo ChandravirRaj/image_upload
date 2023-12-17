@@ -1,8 +1,9 @@
-package com.androboy.fileuploadsample
+package com.androboy.fileuploadsample.ui
 
 import android.util.Log
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.viewbinding.ViewBinding
+import com.androboy.fileuploadsample.BaseActivity
 import com.androboy.fileuploadsample.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
