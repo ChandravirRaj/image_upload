@@ -14,14 +14,12 @@ import javax.inject.Inject
 class ImageUploadRepository @Inject constructor(private val apiInterface: ApiRequests) : BaseRepo() {
 
     suspend fun uploadImage(file: File): NetworkResult<ImageUploadResponse> {
-        val requestFileSocialImage = file.let {
-            it
-                .asRequestBody(AppUtil.getMimeType(file.absolutePath)?.toMediaTypeOrNull())
-        }
+        val requestFileSocialImage = file
+            .asRequestBody(AppUtil.getMimeType(file.absolutePath)?.toMediaTypeOrNull())
 
         val socialImageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
             AppConstant.UPLOAD_MEDIA_1,
-            file?.name,
+            file.name,
             requestFileSocialImage
         )
 

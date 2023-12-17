@@ -28,7 +28,6 @@ class MainViewModel @Inject constructor(
 
 
     fun uploadImage(file: File){
-
         viewModelScope.launch(Dispatchers.IO) {
             imageUploadRepository.uploadImage(file).let {
                 _uploadImageLiveData.postValue(it)

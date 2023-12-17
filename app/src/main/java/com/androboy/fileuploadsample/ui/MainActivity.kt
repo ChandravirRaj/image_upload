@@ -27,6 +27,7 @@ class MainActivity : BaseActivity() {
     private var mCameraSheet: BottomSheetDialog? = null
     private var selectionCamera = 0
     private var pickedImageFile: File? = null
+
     override fun layoutRes(): ViewBinding {
         installSplashScreen()
         return ActivityMainBinding.inflate(layoutInflater)
@@ -124,6 +125,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (AppUtil.isConnection()) {
