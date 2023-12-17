@@ -2,7 +2,7 @@ package com.androboy.fileuploadsample.utils
 
 class AppConstant {
     companion object{
-        const val BASE_URL = "https://api.quotable.io/"
+        const val BASE_URL = "https://upload.imagekit.io/api/v1/files/"
 
         var IS_FROM_CAMERA = "camera"
 
@@ -13,12 +13,12 @@ class AppConstant {
         var IMAGE_GALLERY_PROFILE = 200
 
         var IMAGE_CAMERA_BEFORE = 300
-        var IMAGE_GALLERY_BEFORE = 400
         var IMAGE_CAMERA_AFTER = 500
 
         var CAMERA_PERMISSION = 2
         var WRITE_EXTERNAL_PERMISSION = 3
 
         var FILE_PATH_IMAGE = "filePathImage"
+        var UPLOAD_MEDIA_1 = "file"
     }
 }

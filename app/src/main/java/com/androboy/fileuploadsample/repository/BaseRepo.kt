@@ -1,5 +1,6 @@
 package com.androboy.fileuploadsample.repository
 
+import android.util.Log
 import com.androboy.fileuploadsample.model.base.Errors
 import com.androboy.fileuploadsample.utils.NetworkResult
 import kotlinx.coroutines.Dispatchers
@@ -29,14 +30,24 @@ abstract class BaseRepo {
                     // In case of success response we
                     // are returning Resource.Success object
                     // by passing our data in it.
+                    Log.d("HHHHHHHH", "safeApiCall:  Success  ${response.body()!!}")
                     NetworkResult.Success(data = response.body()!!)
                 } else {
                     // parsing api's own custom json error
                     // response in ExampleErrorResponse pojo
-                    val errorResponse: Errors? = convertErrorBody(response.errorBody())
+//                    val errorResponse: Errors? = convertErrorBody(response.errorBody())
+
+                    var errorResponse: Errors? = null
+                    if (response.code() == 403){
+                        errorResponse  = Errors()
+                        errorResponse.message = "Your account cannot be authenticated. For support kindly contact us at support@imagekit.io ."
+                    }else{
+                        errorResponse =  convertErrorBody(response.errorBody())
+                    }
+
                     // Simply returning api's own failure message
                     NetworkResult.Error(
-                        message = errorResponse?.message ?: "Something went wrong"
+                        message = errorResponse.message ?: "Something went wrong"
                     )
                 }
 
@@ -49,8 +60,6 @@ abstract class BaseRepo {
                 // wrapped in Resource.Error
                 NetworkResult.Error("Please check your network connection")
             } catch (e: Exception) {
-                // Returning 'Something went wrong' in case
-                // of unknown error wrapped in Resource.Error
                 NetworkResult.Error(message = "Something went wrong")
             }
         }

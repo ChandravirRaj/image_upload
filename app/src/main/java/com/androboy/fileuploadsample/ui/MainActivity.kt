@@ -2,7 +2,9 @@ package com.androboy.fileuploadsample.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.androboy.fileuploadsample.BaseActivity
@@ -12,6 +14,7 @@ import com.androboy.fileuploadsample.databinding.BottomSheetCaptureBinding
 import com.androboy.fileuploadsample.ui.viewmodel.MainViewModel
 import com.androboy.fileuploadsample.utils.AppConstant
 import com.androboy.fileuploadsample.utils.AppUtil
+import com.androboy.fileuploadsample.utils.NetworkResult
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -23,7 +26,7 @@ class MainActivity : BaseActivity() {
     private lateinit var viewModel: MainViewModel
     private var mCameraSheet: BottomSheetDialog? = null
     private var selectionCamera = 0
-    private var profileImageFile: File? = null
+    private var pickedImageFile: File? = null
     override fun layoutRes(): ViewBinding {
         installSplashScreen()
         return ActivityMainBinding.inflate(layoutInflater)
@@ -42,7 +45,23 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setObservers() {
+        viewModel.uploadImageLiveData.observe(this, Observer {
+            when (it) {
+                is NetworkResult.Success -> {
+                    hideProgressBar()
 
+                }
+
+                is NetworkResult.Error -> {
+                    hideProgressBar()
+                    showSnackBar("Your account cannot be authenticated. For support kindly contact us at support@imagekit.io .")
+                }
+
+                is NetworkResult.Loading -> {
+                    Log.d("MMMMMM", "setObserver Loading: ")
+                }
+            }
+        })
 
     }
 
@@ -55,6 +74,16 @@ class MainActivity : BaseActivity() {
 
         ui.btnUploadImage.setOnClickListener {
             AppUtil.preventTwoClick(it)
+            if (AppUtil.isConnection()) {
+                if (pickedImageFile != null) {
+                    showProgressBar()
+                    viewModel.uploadImage(pickedImageFile!!)
+                } else {
+                    showSnackBar("Please pick image first")
+                }
+            } else {
+                showSnackBar("Please check your network")
+            }
         }
 
         uiBottom.linearFromCamera.setOnClickListener {
@@ -115,7 +144,7 @@ class MainActivity : BaseActivity() {
                                     if (sizeMb >= 10) {
                                         showSnackBar("Image size is more than 10 mb")
                                     } else {
-                                        profileImageFile = finalFile
+                                        pickedImageFile = finalFile
 
                                         ui.tvFilePath.text = finalFilePath.toString()
                                         ui.tvFileName.text = finalFile.name

@@ -1,7 +1,6 @@
 package com.androboy.fileuploadsample.ui.viewmodel
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,24 +27,11 @@ class MainViewModel @Inject constructor(
         get() = _uploadImageLiveData
 
 
-    fun uploadImage(page: Int){
+    fun uploadImage(file: File){
+
         viewModelScope.launch(Dispatchers.IO) {
-            imageUploadRepository.uploadImage(page).let {
-                when (it) {
-                    is NetworkResult.Success -> {
-                        Log.d("MMMMMM", "setObserver Success:  ${it.data.toString()}")
-                        _uploadImageLiveData.postValue(it)
-
-                    }
-
-                    is NetworkResult.Error -> {
-                        Log.d("MMMMMM", "setObserver Error: ")
-                    }
-
-                    is NetworkResult.Loading -> {
-                        Log.d("MMMMMM", "setObserver Loading: ")
-                    }
-                }
+            imageUploadRepository.uploadImage(file).let {
+                _uploadImageLiveData.postValue(it)
             }
         }
 
