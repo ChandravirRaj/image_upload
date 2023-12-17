@@ -4,4 +4,7 @@
     <string name="text_level_file_name">File Name : </string>
     <string name="text_level_file_path">File Path : </string>
     <string name="text_level_screen_header">Image Upload</string>
+    <string name="text_button_cancel">Cancel</string>
+    <string name="text_from_gallery">From Gallery</string>
+    <string name="text_from_camera">From Camera</string>
 </resources>
